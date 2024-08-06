@@ -31,6 +31,7 @@
 #include "text.h"
 #include "util.h"
 #include "window.h"
+#include "config/battle.h"
 #include "constants/battle_anim.h"
 #include "constants/battle_move_effects.h"
 #include "constants/battle_partner.h"
@@ -1716,6 +1717,9 @@ static void MoveSelectionDisplayMoveType(u32 battler)
     u8 type;
     u32 speciesId;
     struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[battler][4]);
+    u32 battlerAtk = battler;
+    u16 move = moveInfo->moves[gMoveSelectionCursor[battler]];;
+    u8 moveType = GetTypeBeforeUsingMove(move, battlerAtk);
 
     txtPtr = StringCopy(gDisplayedStringBattle, gText_MoveInterfaceType);
 
@@ -1748,7 +1752,10 @@ static void MoveSelectionDisplayMoveType(u32 battler)
             type = TYPE_STELLAR;
     }
 
-    end = StringCopy(txtPtr, gTypesInfo[type].name);
+    if (B_DYNAMIC_MOVE_TYPE == TRUE)
+        StringCopy(txtPtr, gTypesInfo[moveType].name);
+    else
+        StringCopy(txtPtr, gTypesInfo[type].name);
     PrependFontIdToFit(txtPtr, end, FONT_NORMAL, WindowWidthPx(B_WIN_MOVE_TYPE) - 25);
     BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_MOVE_TYPE);
 }
