@@ -4441,7 +4441,7 @@ static void CursorCb_StatEdit(u8 taskId)
     Task_ClosePartyMenu(taskId);
 }
 
-static void LoadPartyMenuAilmentGfx(void)
+void LoadPartyMenuAilmentGfx(void)
 {
     LoadCompressedSpriteSheet(&sSpriteSheet_StatusIcons);
     LoadCompressedSpritePalette(&sSpritePalette_StatusIcons);
