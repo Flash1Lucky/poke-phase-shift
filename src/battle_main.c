@@ -5716,6 +5716,7 @@ bool32 TrySetAteType(u32 move, u32 battlerAtk, u32 attackerAbility)
     }
 
     return FALSE;
+}
 u8 GetMonMoveType(u16 move, struct Pokemon *mon, u32 battler)
 {
     u32 moveType, ateType;

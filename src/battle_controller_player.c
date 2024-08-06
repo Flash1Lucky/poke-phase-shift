@@ -1753,9 +1753,9 @@ static void MoveSelectionDisplayMoveType(u32 battler)
     }
 
     if (B_DYNAMIC_MOVE_TYPE == TRUE)
-        StringCopy(txtPtr, gTypesInfo[moveType].name);
+        end = StringCopy(txtPtr, gTypesInfo[moveType].name);
     else
-        StringCopy(txtPtr, gTypesInfo[type].name);
+        end = StringCopy(txtPtr, gTypesInfo[type].name);
     PrependFontIdToFit(txtPtr, end, FONT_NORMAL, WindowWidthPx(B_WIN_MOVE_TYPE) - 25);
     BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_MOVE_TYPE);
 }
